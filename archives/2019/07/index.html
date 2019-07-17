@@ -63,7 +63,7 @@
 		<a id="logo" href="/">
 			<img src="/images/logo.png" />
 			<span id="site-desc">
-			  U
+			  �꼾������
       </span>
 		</a>
 		<button id="site-nav-switch">
@@ -104,30 +104,43 @@
 
 <section class="post-list">
 	
-    <article class="post ">
+    <article class="post no-title">
 
-  
-  <h2 class="title">
-    <a href="/2019/07/17/P1182-数列分段-Section2/">
-      P1182-数列分段/Section2
-    </a>
-  </h2>
   
   <time>
     Jul 17, 2019
   </time>
   <section class="content">
-	  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">	<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line">ll q[<span class="number">100002</span>];</span><br><span class="line">ll sum;</span><br><span class="line">ll maxn;</span><br><span class="line"><span class="keyword">int</span> l, r;</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, cnt = <span class="number">1</span>;  <span class="comment">//每个段的总和以及被分的段的总数</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> mid)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (res + q[i] &lt;= mid) res += q[i];</span><br><span class="line">		<span class="keyword">else</span> &#123; res = q[i];cnt++; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt &gt; m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; q[i];</span><br><span class="line">		<span class="keyword">if</span> (maxn &lt; q[i]) maxn = q[i];</span><br><span class="line">		sum += q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	l = maxn;r = sum;</span><br><span class="line">	<span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">		res = <span class="number">0</span>;cnt = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (check(mid)) l = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; l;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+	  <hr>
+<p>title: P1182-数列分段/Section2<br>date: 2019-07-17 11:16:27<br>tags:</p>
+<ul>
+<li>蒟蒻的挣扎史  </li>
+<li>二分</li>
+<li>贪心</li>
+</ul>
+<hr>
+<p>看一些算法题目，也算是稍微微微微充实一下自己。  </p>
+<p>####题目  </p>
+<blockquote>
+<p>给定一个长度为n的数列A，要求将它分为m段，要求每段连续，且每段和的最大值最小。N&lt;=10e5,m&lt;=n,Ai之和不超过10e9。  </p>
+</blockquote>
+<p>这题一看就知道我不会。所以很老实的去看了看题解。题解也真是避重就轻，尼玛的重要的地方就说：这个要自己思考一下。还好给了代码，按他写的理解（<del>感觉也不是自己写的，很多地方说话很模棱两可</del>）,对于check函数,说是：“在a数组内,能否满足每组的和比x小。如果是,返回0;否，返回1。”尼玛的是我不懂这其中的奥秘……这函数每组不是绝对&lt;=x？明明重点是cnt&gt;m(原题解cnt&gt;=m),关于这点什么也没提<del>总之题解写的也是够垃圾。</del>  </p>
+<p>好吧，还好有代码。讲讲我自己的理解。  </p>
+<p>首先这个数字最大值一定存在（玄学。既然存在那一定找得到，即使有时候错过了，最后也还是会找回来。这个题是贪心+二分。先上代码，  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line">ll q[<span class="number">100002</span>];</span><br><span class="line">ll sum;</span><br><span class="line">ll maxn;</span><br><span class="line"><span class="keyword">int</span> l, r;</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, cnt = <span class="number">1</span>;  <span class="comment">//每个段的总和以及被分的段的总数</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> mid)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (res + q[i] &lt;= mid) res += q[i];</span><br><span class="line">		<span class="keyword">else</span> &#123; res = q[i];cnt++; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt &gt; m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; q[i];</span><br><span class="line">		<span class="keyword">if</span> (maxn &lt; q[i]) maxn = q[i];</span><br><span class="line">		sum += q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	l = maxn;r = sum;</span><br><span class="line">	<span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">		res = <span class="number">0</span>;cnt = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (check(mid)) l = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; l;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我好烦啊<br>test~</p>
+<p>首先考虑要寻找的答案，即最小的段最大值。它一定介于这个数列的最大值和整个数列和之间。因为数列中的最大值在被分段时，它所在的段和一定&gt;=它，临界条件是=它，如果只要分一段，那自然是总和。  </p>
+<p>这段代码的check函数是重点，用二分法来寻找这个最小的最大和，mid用来判断与要求的数的方位。它里面对数列a进行分段，求每段的总和。要求分的段数必须是m，所以我用cnt来标记它被分的段数。在未经分段的时候，cnt初始化1，代表一整个数列一段。最后的return cnt&gt;m的意思是：  </p>
+<ol>
+<li>如果分段数目比要求的数目多（每段和&lt;=mid），即代表这个mid选小了，目标数在它的左边，返回为1-&gt;执行左区间变化为mid+1。  </li>
+<li>如果分段数目比要求的数目少，即代表这个mid太大了（每个段的数据多），目标数在它的右边，返回0-&gt;执行右区间变化mid-1。  </li>
+<li>如果刚好等于呢？也并不能说就找到了答案，因为要求段和最大值最小，就必须贪心到最小，要往左边看看是否有更小的满足条件，所以变化左区间，与1一样。（当然也有可能就是要找的答案，这步还是会执行，但是答案不会有问题，顶多多几步操作）  </li>
+</ol>
+<p>第一次写博客复盘，有点啰嗦了。  </p>
 
 
     
     
-    
-	  <div class="tags">
-      <a class="tag-link" href="/tags/二分/">二分</a><a class="tag-link" href="/tags/蒟蒻的挣扎史/">蒟蒻的挣扎史</a>
-	  </div>
     
 
   </section>
