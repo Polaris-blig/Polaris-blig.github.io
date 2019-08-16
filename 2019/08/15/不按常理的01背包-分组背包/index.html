@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="No More Rain">
 <meta property="og:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T08:44:11.167Z">
+<meta property="og:updated_time" content="2019-08-16T08:52:50.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01背包+分组背包">
 <meta name="twitter:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
@@ -268,80 +268,75 @@
 </code></pre>
 <h3 id="二维01背包"><a href="#二维01背包" class="headerlink" title="二维01背包"></a>二维01背包</h3><blockquote>
 <p>洛谷P1060 开心的金明  <a href="https://www.luogu.org/record/22172462" target="_blank" rel="noopener">https://www.luogu.org/record/22172462</a>  </p>
-<pre><code class="cpp"></code></pre>
 </blockquote>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
 
-int n, m;
-int res[28][30005];
-int mon[26];
-int var[26];
+<span class="keyword">int</span> n, m;
+<span class="keyword">int</span> res[<span class="number">28</span>][<span class="number">30005</span>];
+<span class="keyword">int</span> mon[<span class="number">26</span>];
+<span class="keyword">int</span> var[<span class="number">26</span>];
 
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-    for (int i = 1;i &lt;= m;i++) { cin &gt;&gt; mon[i] &gt;&gt; var[i];}
-    for (int i = 1;i &lt;= m;i++) {
-        for (int j = 1;j &lt;= n;j++) {
-            if (j &gt;= mon[i]) res[i][j] = max(res[i-1][j],res[i-1][j-mon[i]]+var[i]*mon[i]);
-            else res[i][j] = res[i - 1][j];
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++) { <span class="built_in">cin</span> &gt;&gt; mon[i] &gt;&gt; var[i];}
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= n;j++) {
+            <span class="keyword">if</span> (j &gt;= mon[i]) res[i][j] = max(res[i<span class="number">-1</span>][j],res[i<span class="number">-1</span>][j-mon[i]]+var[i]*mon[i]);
+            <span class="keyword">else</span> res[i][j] = res[i - <span class="number">1</span>][j];
         }
     }
-    cout &lt;&lt; res[m][n];
-    return 0;
-}</code></pre><pre><code>### 二维分组背包  
-
-&gt; 洛谷P1757通天之分组背包[https://www.luogu.org/problem/P1757](https://www.luogu.org/problem/P1757)     
-&gt; 
-一开始，在网上看到的转移方程是：（d[i][j]为第i组容量为j，k为第i组第k个。  
-    `d[i][j]=max(d[i-1][j],d[i-weight[k]]+value[k])`    
-如果只有这个方程，还不太全面，因为当假设某一组有两个商品（设重量为10，价值前者20，后者10），当要对这组计算的时候，d[i-1][j]假设已经确定为0，那么第一次d[i][j]得到20，第二次d[i][j]得到10，大值被覆盖。所以上面这个方程的毛病就是，没有与本组的其他值比较。  
-**d[i][j]是针对于一整个组来算的**，不是对于某一个物品算的。所以除了和前一组数据对比，还要和本组自己的数据对比。  
-所以完整的应该是：
-```cpp    
-    #include&lt;bits/stdc++.h&gt;
-    using namespace std;
+    <span class="built_in">cout</span> &lt;&lt; res[m][n];
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+<h3 id="二维分组背包"><a href="#二维分组背包" class="headerlink" title="二维分组背包"></a>二维分组背包</h3><blockquote>
+<p>洛谷P1757通天之分组背包<a href="https://www.luogu.org/problem/P1757" target="_blank" rel="noopener">https://www.luogu.org/problem/P1757</a>     </p>
+</blockquote>
+<p>一开始，在网上看到的转移方程是：（d[i][j]为第i组容量为j，k为第i组第k个。<br>    <code>d[i][j]=max(d[i-1][j],d[i-weight[k]]+value[k])</code><br>如果只有这个方程，还不太全面，因为当假设某一组有两个商品（设重量为10，价值前者20，后者10），当要对这组计算的时候，d[i-1][j]假设已经确定为0，那么第一次d[i][j]得到20，第二次d[i][j]得到10，大值被覆盖。所以上面这个方程的毛病就是，没有与本组的其他值比较。<br><strong>d[i][j]是针对于一整个组来算的</strong>，不是对于某一个物品算的。所以除了和前一组数据对比，还要和本组自己的数据对比。<br>所以完整的应该是：  </p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
 
 
-    struct package {
-        int cap;
-        int var;
-    }res[105][1005];
+<span class="class"><span class="keyword">struct</span> <span class="title">package</span> {</span>
+    <span class="keyword">int</span> cap;
+    <span class="keyword">int</span> var;
+}res[<span class="number">105</span>][<span class="number">1005</span>];
 
-    int row;
-    int m, n;
-    int ai, bi, ci;
-    int cnt[105];
-    int d[105][1005];
-    bool cmp(package p1, package p2) {
-        return p1.cap &gt; p2.cap;
+<span class="keyword">int</span> row;
+<span class="keyword">int</span> m, n;
+<span class="keyword">int</span> ai, bi, ci;
+<span class="keyword">int</span> cnt[<span class="number">105</span>];
+<span class="keyword">int</span> d[<span class="number">105</span>][<span class="number">1005</span>];
+<span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(package p1, package p2)</span> </span>{
+    <span class="keyword">return</span> p1.cap &gt; p2.cap;
+}
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; m &gt;&gt; n;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++) {
+        <span class="built_in">cin</span> &gt;&gt; ai &gt;&gt; bi &gt;&gt; ci;
+        <span class="keyword">if</span> (ai &gt; m) <span class="keyword">continue</span>;
+        row = max(row, ci);
+        cnt[ci]++;
+        res[ci][cnt[ci]].cap = ai;
+        res[ci][cnt[ci]].var = bi;
     }
-    int main() {
-        cin &gt;&gt; m &gt;&gt; n;
-        for (int i = 1;i &lt;= n;i++) {
-            cin &gt;&gt; ai &gt;&gt; bi &gt;&gt; ci;
-            if (ai &gt; m) continue;
-            row = max(row, ci);
-            cnt[ci]++;
-            res[ci][cnt[ci]].cap = ai;
-            res[ci][cnt[ci]].var = bi;
-        }
-        for (int i = 0;i &lt;= row;i++) {
-            for (int k =0 ;k&lt;=m;k++) {
-                for (int j = 1;j &lt;= cnt[i];j++) {
-                    if (k &gt;= res[i][j].cap) {
-                       int r = max(d[i-1][k], d[i - 1][k - res[i][j].cap] + res[i][j].var);//暂时储存
-                       d[i][k]=max(d[i][k],r);//找到最优
-                    }
-
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= row;i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> k =<span class="number">0</span> ;k&lt;=m;k++) {
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= cnt[i];j++) {
+                <span class="keyword">if</span> (k &gt;= res[i][j].cap) {
+                   <span class="keyword">int</span> r = max(d[i<span class="number">-1</span>][k], d[i - <span class="number">1</span>][k - res[i][j].cap] + res[i][j].var);<span class="comment">//暂时储存</span>
+                   d[i][k]=max(d[i][k],r);<span class="comment">//找到最优</span>
                 }
-                d[i][k] = max(d[i][k],d[i - 1][k]); //不选可能更优
+
             }
+            d[i][k] = max(d[i][k],d[i - <span class="number">1</span>][k]); <span class="comment">//不选可能更优</span>
         }
-        cout &lt;&lt; d[row][m];
-        return 0;
-    }  
-</code></pre><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>在上面的核心代码中，我原来还这么写过，但是错了。</p>
+    }
+    <span class="built_in">cout</span> &lt;&lt; d[row][m];
+    <span class="keyword">return</span> <span class="number">0</span>;
+}  
+</code></pre>
+<h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>在上面的核心代码中，我原来还这么写过，但是错了。</p>
 <pre><code class="cpp"><span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt[i];j++)
             {
                 <span class="keyword">if</span> (k&gt;=res[i][j].cap)
