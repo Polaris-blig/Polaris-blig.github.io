@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="No More Rain">
 <meta property="og:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T08:52:50.101Z">
+<meta property="og:updated_time" content="2019-08-16T08:53:22.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01背包+分组背包">
 <meta name="twitter:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
@@ -295,13 +295,10 @@
 <p>一开始，在网上看到的转移方程是：（d[i][j]为第i组容量为j，k为第i组第k个。<br>    <code>d[i][j]=max(d[i-1][j],d[i-weight[k]]+value[k])</code><br>如果只有这个方程，还不太全面，因为当假设某一组有两个商品（设重量为10，价值前者20，后者10），当要对这组计算的时候，d[i-1][j]假设已经确定为0，那么第一次d[i][j]得到20，第二次d[i][j]得到10，大值被覆盖。所以上面这个方程的毛病就是，没有与本组的其他值比较。<br><strong>d[i][j]是针对于一整个组来算的</strong>，不是对于某一个物品算的。所以除了和前一组数据对比，还要和本组自己的数据对比。<br>所以完整的应该是：  </p>
 <pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
-
-
 <span class="class"><span class="keyword">struct</span> <span class="title">package</span> {</span>
     <span class="keyword">int</span> cap;
     <span class="keyword">int</span> var;
 }res[<span class="number">105</span>][<span class="number">1005</span>];
-
 <span class="keyword">int</span> row;
 <span class="keyword">int</span> m, n;
 <span class="keyword">int</span> ai, bi, ci;
