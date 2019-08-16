@@ -104,7 +104,7 @@
   
   <h2 class="title">
     <a href="/2019/08/15/不按常理的01背包-分组背包/">
-      不按常理的01背包+分组背包
+      01背包+分组背包
     </a>
   </h2>
   
@@ -113,12 +113,11 @@
   </time>
   <section class="content">
 	  <p>题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……  </p>
-<h2 id="一维版"><a href="#一维版" class="headerlink" title="一维版"></a>一维版</h2><h3 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h3><blockquote>
-<p>洛谷P1048采药  <a href="https://www.luogu.org/record/22529217" target="_blank" rel="noopener">https://www.luogu.org/record/22529217</a>  </p>
-</blockquote>
-<p>代码:  </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> t, m;</span><br><span class="line"><span class="keyword">int</span> tme, var;</span><br><span class="line"><span class="keyword">int</span> res[<span class="number">1005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; m;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; tme &gt;&gt; var;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = t;j &gt;= <span class="number">1</span>;j--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (j &gt;= tme) &#123;</span><br><span class="line">				res[j] = max(res[j], res[j - tme] + var);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res[t];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+    
+	  <div class="readmore">
+      <a href="/2019/08/15/不按常理的01背包-分组背包/">Read More</a>
+    </div>
     
     
     

@@ -4,24 +4,24 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>不按常理的01背包+分组背包 | No More Rain</title>
+  <title>01背包+分组背包 | No More Rain</title>
   <meta name="description" content="A minimal hexo theme.">
   <meta name="keywords" content="hexo,theme,minimal,otakism">
   <meta name="HandheldFriendly" content="True">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……   一维版01背包 洛谷P1048采药  https://www.luogu.org/record/22529217    代码:   1234567891011121314151617181920#include&amp;lt;iostream&amp;gt;using namespace std;int t, m;i">
+  <meta name="description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
 <meta name="keywords" content="背包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不按常理的01背包+分组背包">
+<meta property="og:title" content="01背包+分组背包">
 <meta property="og:url" content="http://yoursite.com/2019/08/15/不按常理的01背包-分组背包/index.html">
 <meta property="og:site_name" content="No More Rain">
-<meta property="og:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……   一维版01背包 洛谷P1048采药  https://www.luogu.org/record/22529217    代码:   1234567891011121314151617181920#include&amp;lt;iostream&amp;gt;using namespace std;int t, m;i">
+<meta property="og:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-15T09:23:21.823Z">
+<meta property="og:updated_time" content="2019-08-16T03:20:16.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不按常理的01背包+分组背包">
-<meta name="twitter:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……   一维版01背包 洛谷P1048采药  https://www.luogu.org/record/22529217    代码:   1234567891011121314151617181920#include&amp;lt;iostream&amp;gt;using namespace std;int t, m;i">
+<meta name="twitter:title" content="01背包+分组背包">
+<meta name="twitter:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
   
   
     <link rel="icon" href="/favicon.png">
@@ -98,7 +98,7 @@
   itemscope itemprop="blogPost">
 	<h2 class="title">
   	<a href="/2019/08/15/不按常理的01背包-分组背包/">
-    	不按常理的01背包+分组背包
+    	01背包+分组背包
     </a>
   </h2>
 	<time>
@@ -107,11 +107,167 @@
 	<section class="content">
   	<div class="article-entry" itemprop="articleBody">
     	<p>题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……  </p>
+<a id="more"></a>
 <h2 id="一维版"><a href="#一维版" class="headerlink" title="一维版"></a>一维版</h2><h3 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h3><blockquote>
 <p>洛谷P1048采药  <a href="https://www.luogu.org/record/22529217" target="_blank" rel="noopener">https://www.luogu.org/record/22529217</a>  </p>
 </blockquote>
 <p>代码:  </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> t, m;</span><br><span class="line"><span class="keyword">int</span> tme, var;</span><br><span class="line"><span class="keyword">int</span> res[<span class="number">1005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; m;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; tme &gt;&gt; var;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = t;j &gt;= <span class="number">1</span>;j--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (j &gt;= tme) &#123;</span><br><span class="line">				res[j] = max(res[j], res[j - tme] + var);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res[t];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="keyword">int</span> t, m;
+<span class="keyword">int</span> tme, var;
+<span class="keyword">int</span> res[<span class="number">1005</span>];
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; m;i++) {
+        <span class="built_in">cin</span> &gt;&gt; tme &gt;&gt; var;
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = t;j &gt;= <span class="number">1</span>;j--) {
+            <span class="keyword">if</span> (j &gt;= tme) {
+                res[j] = max(res[j], res[j - tme] + var);
+            }
+        }
+    }
+    <span class="built_in">cout</span> &lt;&lt; res[t];
+    <span class="keyword">return</span> <span class="number">0</span>;
+}  
+</code></pre>
+<p>分组背包：  </p>
+<blockquote>
+<p>P1757通天之分组背包<a href="https://www.luogu.org/problem/P1757" target="_blank" rel="noopener">https://www.luogu.org/problem/P1757</a>  </p>
+</blockquote>
+<p>代码:  </p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">int</span> n, m;
+<span class="keyword">int</span> ai, bi, ci;
+<span class="keyword">int</span> row;
+<span class="keyword">int</span> cc[<span class="number">105</span>];
+<span class="keyword">int</span> cap[<span class="number">105</span>][<span class="number">1005</span>];
+<span class="keyword">int</span> var[<span class="number">105</span>][<span class="number">1005</span>];
+<span class="keyword">int</span> d[<span class="number">1005</span>];
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; m &gt;&gt; n;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++) {
+        <span class="built_in">cin</span> &gt;&gt; ai &gt;&gt; bi &gt;&gt; ci;
+        row = max(row, ci);
+        cc[ci]++;
+        cap[ci][cc[ci]] = ai;
+        var[ci][cc[ci]] = bi;
+    }
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;=row;i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> k = m;k &gt; <span class="number">0</span>;k--) {
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= cc[i];j++) {
+                <span class="keyword">if</span> (k &gt;= cap[i][j])
+                    d[k] = max(d[k], d[k - cap[i][j]] + var[i][j]);
+            }
+        }
+    }
+    <span class="built_in">cout</span> &lt;&lt; d[m];
+    <span class="keyword">return</span> <span class="number">0</span>;
+}  </code></pre>
+<h2 id="其他版"><a href="#其他版" class="headerlink" title="其他版"></a>其他版</h2><p>一维的简单又快速，但是当时想起了很久前看过的硬币个数max/min值，觉得和01背包很像，只是把个数换成无数个-&gt;完全背包，可以用以下这种搜索写。     </p>
+<blockquote>
+<p>P1616疯狂的采药<a href="https://www.luogu.org/record/22239575" target="_blank" rel="noopener">https://www.luogu.org/record/22239575</a></p>
+</blockquote>
+<pre><code class="cpp"><span class="keyword">int</span> t, m;
+<span class="keyword">int</span> vis[<span class="number">100005</span>];
+<span class="keyword">int</span> d[<span class="number">100005</span>];
+<span class="keyword">int</span> tme[<span class="number">10005</span>];
+<span class="keyword">int</span> var[<span class="number">10005</span>];
+
+<span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> s)</span> </span>{
+    <span class="keyword">if</span> (vis[s]) <span class="keyword">return</span> d[s];
+    <span class="comment">//vis[s] = 1;</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++) {
+        <span class="keyword">if</span> (s &gt;= tme[i]) {
+            d[s]=max(d[s],dfs(s - tme[i])+var[i]);
+        }
+    }
+    vis[s] = <span class="number">1</span>;
+    <span class="keyword">return</span> d[s];
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++) { <span class="built_in">cin</span> &gt;&gt; tme[i] &gt;&gt; var[i]; }
+    dfs(t);
+    <span class="built_in">cout</span> &lt;&lt; d[t];
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>
+<p>或者也可以用dp：  </p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="keyword">int</span> t, m;
+<span class="keyword">int</span> tme[<span class="number">10005</span>];
+<span class="keyword">int</span> var[<span class="number">10005</span>];
+<span class="keyword">int</span> d[<span class="number">100005</span>];
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++) {<span class="built_in">cin</span> &gt;&gt; tme[i] &gt;&gt; var[i];}
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= t;i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= m;j++) {
+            <span class="keyword">if</span> (i &gt;= tme[j]) {
+                d[i] = max(d[i], d[i - tme[j]] + var[j]);
+                <span class="comment">//cout &lt;&lt; i &lt;&lt; " " &lt;&lt; d[i] &lt;&lt; endl;</span>
+            }
+        }
+    }
+    <span class="built_in">cout</span> &lt;&lt; d[t];
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+<p>好吧，到这里一切正常，然后我就想用第一种搜索的方式来写一下01，结果当然是错的。<br>这是我的部分错误代码,vissub[]用来标记每种药材有没有被选中（原来的想法就是，从这些草药中选一部分，总重量不超过包的要求，然后来算总价值  </p>
+<pre><code class="cpp"><span class="keyword">int</span> t, m;
+<span class="keyword">int</span> vissum[<span class="number">1005</span>];
+<span class="keyword">int</span> vissub[<span class="number">105</span>];
+<span class="keyword">int</span> tme[<span class="number">105</span>];
+<span class="keyword">int</span> var[<span class="number">105</span>];
+<span class="keyword">int</span> d[<span class="number">1005</span>];
+
+<span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> pos)</span> </span>{
+    <span class="keyword">if</span> (vissum[s]) <span class="keyword">return</span> d[s];
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = pos;i &lt;= m;i++) {
+        <span class="keyword">if</span> (!vissub[i] &amp;&amp; s &gt;= tme[i]) {
+            vissub[i] = <span class="number">1</span>;
+            d[s] = max(d[s], dfs(s - tme[i],i+<span class="number">1</span>) + var[i]);
+            vissub[i] = <span class="number">0</span>;
+        }
+    }
+    vissum[s] = <span class="number">1</span>;
+    <span class="keyword">return</span> d[s];
+}
+</code></pre>
+<p>想了很久也没想明白，后来才发现，d[s]用来记录的是，当包中剩余重量为s时，能得到的最大价值。但这么算，d[]并不能得到最大价值。<br>举个例子，假如有1,2,3,4,5种草药，最大重量为30，对于d[10]要选择2,4种才能得到最大价值，但是对最初dfs（30），选择了1,2,3，继续往下搜索的时候到达dfs(10),此时2以及被选择，故不能再选，所以这么搜索下去，不可能得到正确的最大价值。但是对于完全背包没有问题，因为每个都是从第一种草药开始选取。<br>对于前面这种想法，应该是这么写的(但是超时)：      </p>
+<pre><code class="cpp">
+<span class="keyword">int</span> maxres = <span class="number">0</span>;
+<span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> sum,<span class="keyword">int</span> pos)</span> </span>{
+    <span class="keyword">int</span> ok = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = pos;i &lt;= m;i++) {
+        <span class="keyword">if</span> (s &gt;= tme[i]) {
+            ok = <span class="number">1</span>;
+            dfs(s - tme[i], sum + var[i], i + <span class="number">1</span>);
+        }
+    }
+    <span class="keyword">if</span> (!ok &amp;&amp; maxres &lt; sum)   <span class="comment">//ok=0证明不能再往下选取</span>
+        maxres = sum;
+}
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{
+    <span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++) {
+        <span class="built_in">cin</span> &gt;&gt; tme[i] &gt;&gt; var[i];
+    }
+    dfs(t,<span class="number">1</span>);
+    <span class="built_in">cout</span> &lt;&lt; d[t];
+    <span class="keyword">return</span> <span class="number">0</span>;
+} 
+</code></pre>
+
   	</div>
 
 	  <div class="article-tags tags">
