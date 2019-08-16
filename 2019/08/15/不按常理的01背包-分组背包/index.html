@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="No More Rain">
 <meta property="og:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T03:20:16.136Z">
+<meta property="og:updated_time" content="2019-08-16T08:44:11.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01背包+分组背包">
 <meta name="twitter:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
@@ -123,7 +123,7 @@
     <span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;
     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; m;i++) {
         <span class="built_in">cin</span> &gt;&gt; tme &gt;&gt; var;
-        <span class="keyword">for</span> (<span class="keyword">int</span> j = t;j &gt;= <span class="number">1</span>;j--) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = t;j &gt;= <span class="number">1</span>;j--) {<span class="comment">//逆序</span>
             <span class="keyword">if</span> (j &gt;= tme) {
                 res[j] = max(res[j], res[j - tme] + var);
             }
@@ -133,9 +133,8 @@
     <span class="keyword">return</span> <span class="number">0</span>;
 }  
 </code></pre>
-<p>分组背包：  </p>
-<blockquote>
-<p>P1757通天之分组背包<a href="https://www.luogu.org/problem/P1757" target="_blank" rel="noopener">https://www.luogu.org/problem/P1757</a>  </p>
+<h3 id="分组背包："><a href="#分组背包：" class="headerlink" title="分组背包："></a>分组背包：</h3><blockquote>
+<p>洛谷P1757通天之分组背包<a href="https://www.luogu.org/problem/P1757" target="_blank" rel="noopener">https://www.luogu.org/problem/P1757</a>  </p>
 </blockquote>
 <p>代码:  </p>
 <pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
@@ -169,9 +168,9 @@
     <span class="built_in">cout</span> &lt;&lt; d[m];
     <span class="keyword">return</span> <span class="number">0</span>;
 }  </code></pre>
-<h2 id="其他版"><a href="#其他版" class="headerlink" title="其他版"></a>其他版</h2><p>一维的简单又快速，但是当时想起了很久前看过的硬币个数max/min值，觉得和01背包很像，只是把个数换成无数个-&gt;完全背包，可以用以下这种搜索写。     </p>
+<h2 id="二维、搜索版"><a href="#二维、搜索版" class="headerlink" title="二维、搜索版"></a>二维、搜索版</h2><p>一维的简单又快速，但是当时想起了很久前看过的硬币个数max/min值，觉得和01背包很像，只是把个数换成无数个-&gt;完全背包，可以用以下这种搜索写。     </p>
 <blockquote>
-<p>P1616疯狂的采药<a href="https://www.luogu.org/record/22239575" target="_blank" rel="noopener">https://www.luogu.org/record/22239575</a></p>
+<p>洛谷P1616疯狂的采药<a href="https://www.luogu.org/record/22239575" target="_blank" rel="noopener">https://www.luogu.org/record/22239575</a></p>
 </blockquote>
 <pre><code class="cpp"><span class="keyword">int</span> t, m;
 <span class="keyword">int</span> vis[<span class="number">100005</span>];
@@ -243,7 +242,7 @@
     <span class="keyword">return</span> d[s];
 }
 </code></pre>
-<p>想了很久也没想明白，后来才发现，d[s]用来记录的是，当包中剩余重量为s时，能得到的最大价值。但这么算，d[]并不能得到最大价值。<br>举个例子，假如有1,2,3,4,5种草药，最大重量为30，对于d[10]要选择2,4种才能得到最大价值，但是对最初dfs（30），选择了1,2,3，继续往下搜索的时候到达dfs(10),此时2以及被选择，故不能再选，所以这么搜索下去，不可能得到正确的最大价值。但是对于完全背包没有问题，因为每个都是从第一种草药开始选取。<br>对于前面这种想法，应该是这么写的(但是超时)：      </p>
+<p>想了很久也没想明白，后来才发现，<strong>d[s]用来记录的是，当包中剩余重量为s时，能得到的最大价值。</strong>但这么算，d[]并不能得到最大价值。<br>举个例子，假如有1,2,3,4,5种草药，最大重量为30，对于d[10]要选择2,4种才能得到最大价值，但是对最初dfs（30），选择了1,2,3，继续往下搜索的时候到达dfs(10),此时2以及被选择，故不能再选，所以这么搜索下去，不可能得到正确的最大价值。但是对于完全背包没有问题，因为每个都是从第一种草药开始选取。<br>对于前面这种想法，应该是这么写的(但是超时)：      </p>
 <pre><code class="cpp">
 <span class="keyword">int</span> maxres = <span class="number">0</span>;
 <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> sum,<span class="keyword">int</span> pos)</span> </span>{
@@ -267,6 +266,94 @@
     <span class="keyword">return</span> <span class="number">0</span>;
 } 
 </code></pre>
+<h3 id="二维01背包"><a href="#二维01背包" class="headerlink" title="二维01背包"></a>二维01背包</h3><blockquote>
+<p>洛谷P1060 开心的金明  <a href="https://www.luogu.org/record/22172462" target="_blank" rel="noopener">https://www.luogu.org/record/22172462</a>  </p>
+<pre><code class="cpp"></code></pre>
+</blockquote>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+
+int n, m;
+int res[28][30005];
+int mon[26];
+int var[26];
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1;i &lt;= m;i++) { cin &gt;&gt; mon[i] &gt;&gt; var[i];}
+    for (int i = 1;i &lt;= m;i++) {
+        for (int j = 1;j &lt;= n;j++) {
+            if (j &gt;= mon[i]) res[i][j] = max(res[i-1][j],res[i-1][j-mon[i]]+var[i]*mon[i]);
+            else res[i][j] = res[i - 1][j];
+        }
+    }
+    cout &lt;&lt; res[m][n];
+    return 0;
+}</code></pre><pre><code>### 二维分组背包  
+
+&gt; 洛谷P1757通天之分组背包[https://www.luogu.org/problem/P1757](https://www.luogu.org/problem/P1757)     
+&gt; 
+一开始，在网上看到的转移方程是：（d[i][j]为第i组容量为j，k为第i组第k个。  
+    `d[i][j]=max(d[i-1][j],d[i-weight[k]]+value[k])`    
+如果只有这个方程，还不太全面，因为当假设某一组有两个商品（设重量为10，价值前者20，后者10），当要对这组计算的时候，d[i-1][j]假设已经确定为0，那么第一次d[i][j]得到20，第二次d[i][j]得到10，大值被覆盖。所以上面这个方程的毛病就是，没有与本组的其他值比较。  
+**d[i][j]是针对于一整个组来算的**，不是对于某一个物品算的。所以除了和前一组数据对比，还要和本组自己的数据对比。  
+所以完整的应该是：
+```cpp    
+    #include&lt;bits/stdc++.h&gt;
+    using namespace std;
+
+
+    struct package {
+        int cap;
+        int var;
+    }res[105][1005];
+
+    int row;
+    int m, n;
+    int ai, bi, ci;
+    int cnt[105];
+    int d[105][1005];
+    bool cmp(package p1, package p2) {
+        return p1.cap &gt; p2.cap;
+    }
+    int main() {
+        cin &gt;&gt; m &gt;&gt; n;
+        for (int i = 1;i &lt;= n;i++) {
+            cin &gt;&gt; ai &gt;&gt; bi &gt;&gt; ci;
+            if (ai &gt; m) continue;
+            row = max(row, ci);
+            cnt[ci]++;
+            res[ci][cnt[ci]].cap = ai;
+            res[ci][cnt[ci]].var = bi;
+        }
+        for (int i = 0;i &lt;= row;i++) {
+            for (int k =0 ;k&lt;=m;k++) {
+                for (int j = 1;j &lt;= cnt[i];j++) {
+                    if (k &gt;= res[i][j].cap) {
+                       int r = max(d[i-1][k], d[i - 1][k - res[i][j].cap] + res[i][j].var);//暂时储存
+                       d[i][k]=max(d[i][k],r);//找到最优
+                    }
+
+                }
+                d[i][k] = max(d[i][k],d[i - 1][k]); //不选可能更优
+            }
+        }
+        cout &lt;&lt; d[row][m];
+        return 0;
+    }  
+</code></pre><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>在上面的核心代码中，我原来还这么写过，但是错了。</p>
+<pre><code class="cpp"><span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt[i];j++)
+            {
+                <span class="keyword">if</span> (k&gt;=res[i][j].cap)
+                {
+                    <span class="keyword">int</span> r1=max(d[i<span class="number">-1</span>][k],d[i<span class="number">-1</span>][k-res[i][j].cap]+res[i][j].var);
+                    d[i][k]=max(d[i][k],r1);
+                }
+            d[i][k]=max(d[i<span class="number">-1</span>][k],d[i][k]); 
+            }
+</code></pre>
+<p>错误的原因是数据毒瘤，加入某一组一个东西也没有，那么<br><code>d[i][k]=max(d[i-1][k],d[i][k]);</code>根本不会被更新，其实按照完全版写的也是更规范的。  </p>
+<p>好吧，记录一下一个简单算法中碰到的坑，再次特别感谢@20140408abcd大佬。</p>
 
   	</div>
 
