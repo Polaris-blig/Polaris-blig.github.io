@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="No More Rain">
 <meta property="og:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T08:55:54.865Z">
+<meta property="og:updated_time" content="2019-08-16T08:57:30.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01背包+分组背包">
 <meta name="twitter:description" content="题目中的俩背包其实都用一维写最简单，但是不知道怎么回事，想换个方法试试……于是就出了毛病……">
@@ -344,7 +344,7 @@
             d[i][k]=max(d[i<span class="number">-1</span>][k],d[i][k]); 
             }
 </code></pre>
-<p>错误的原因是数据毒瘤，假如某一组一个东西也没有，那么<br><code>d[i][k]=max(d[i-1][k],d[i][k]);</code>根本不会被更新，其实按照完全版写的也是更规范的。  </p>
+<p>错误的原因是数据毒瘤，假如某一组一个东西也没有，那么<br><code>d[i][k]=max(d[i-1][k],d[i][k]);</code>不执行，dij根本不会被更新，其实按照完全版写的也是更规范的。  </p>
 <p>好吧，记录一下一个简单算法中碰到的坑，再次特别感谢@20140408abcd大佬。</p>
 
   	</div>
